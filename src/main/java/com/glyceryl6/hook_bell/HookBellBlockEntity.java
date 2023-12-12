@@ -125,9 +125,11 @@ public class HookBellBlockEntity extends BlockEntity {
     }
 
     private boolean areRaidersNearby() {
-        for (LivingEntity livingEntity : this.nearbyEntities) {
-            if (this.isRaiderWithinRange(livingEntity)) {
-                return true;
+        if (this.nearbyEntities != null && !this.nearbyEntities.isEmpty()) {
+            for (LivingEntity livingEntity : this.nearbyEntities) {
+                if (this.isRaiderWithinRange(livingEntity)) {
+                    return true;
+                }
             }
         }
 
@@ -165,13 +167,14 @@ public class HookBellBlockEntity extends BlockEntity {
     private static List<EntityType<?>> getEntityTypesConfig(List<? extends String> config){
         List<EntityType<?>> list = new ArrayList<>();
         if (!config.isEmpty()) {
-            for (String id : config){
+            for (String id : config) {
                 EntityType<?> entityType = ForgeRegistries.ENTITY_TYPES.getValue(new ResourceLocation(id));
                 if (entityType != null) {
                     list.add(entityType);
                 }
             }
         }
+
         return list;
     }
 
