@@ -26,7 +26,7 @@ public class HookBellBlock extends BellBlock {
     @Override
     public boolean attemptToRing(@Nullable Entity entity, Level level, BlockPos pos, @Nullable Direction direction) {
         if (!level.isClientSide && level.getBlockEntity(pos) instanceof HookBellBlockEntity blockEntity) {
-            if (direction == null) {
+            if (direction != null) {
                 direction = level.getBlockState(pos).getValue(FACING);
             }
 
