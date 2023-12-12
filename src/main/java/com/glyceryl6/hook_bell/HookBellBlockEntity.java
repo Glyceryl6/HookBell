@@ -125,9 +125,11 @@ public class HookBellBlockEntity extends BlockEntity {
     }
 
     private boolean areRaidersNearby() {
-        for (LivingEntity livingEntity : this.nearbyEntities) {
-            if (this.isRaiderWithinRange(livingEntity)) {
-                return true;
+        if (this.nearbyEntities != null && !this.nearbyEntities.isEmpty()) {
+            for (LivingEntity livingEntity : this.nearbyEntities) {
+                if (this.isRaiderWithinRange(livingEntity)) {
+                    return true;
+                }
             }
         }
 
@@ -172,6 +174,7 @@ public class HookBellBlockEntity extends BlockEntity {
                 }
             }
         }
+
         return list;
     }
 
